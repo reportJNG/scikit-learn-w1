@@ -1,3 +1,51 @@
+'''
+Task 2 — Pass / Fail Classifier ⚡
+Goal
+
+Predict if a student will pass or fail based on study hours.
+
+This is classification, not regression.
+
+0 = fail
+1 = pass
+Data
+
+Use this:
+
+X = [[1], [2], [3], [4], [5], [6], [7], [8]]
+y = [0, 0, 0, 0, 1, 1, 1, 1]
+
+Meaning:
+
+1h → fail
+2h → fail
+3h → fail
+4h → fail
+5h → pass
+6h → pass
+7h → pass
+8h → pass
+What you need to do
+
+Use:
+
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+Your program must:
+
+1. Split data using train_test_split
+2. Create LogisticRegression model
+3. Train with model.fit()
+4. Predict result for 4.5 hours
+5. Predict result for 6 hours
+6. Calculate accuracy using X_test and y_test
+7. Print everything
+Expected output idea
+Prediction for 4.5 hours: 0 or 1
+Prediction for 6 hours: 1
+Accuracy: 1.0'''
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
