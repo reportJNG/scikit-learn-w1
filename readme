@@ -1,0 +1,16 @@
+Task 1 — Predict salary from experience
+Data to use
+years = [[1], [2], [3], [4], [5], [6], [7], [8]]
+salary = [30000, 35000, 40000, 45000, 50000, 60000, 65000, 70000]
+What your program must do
+1. Import LinearRegression
+2. Split data into train/test
+3. Train model
+4. Predict salary for 9 years experience
+5. Print prediction
+Expected idea
+Input: 9 years
+Output: around 75000+
+X = inputs/features
+y = output/target
+
