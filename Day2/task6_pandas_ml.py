@@ -50,3 +50,33 @@ Your program must:
 9. Predict this student: [6.5, 78, 72]
 10. Calculate accuracy
 11. Print prediction + accuracy'''
+
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
+import pandas as pd
+
+data = pd.read_csv('./csv/student_pass.csv')
+#print 
+print(data.head())
+print(data.columns)
+
+X=data[['study_hours','attendance','previous_score']]
+
+y=data['passed']
+
+X_train,X_test,y_train,y_test = train_test_split(
+    X,y,test_size=0.3,random_state=42
+)
+#model
+model = LogisticRegression()
+model.fit(X_train,y_train)
+pred = model.predict([[6.5, 78, 72]])
+y_pred=model.predict(X_test)
+accuratte = accuracy_score(y_test,y_pred)
+
+#print result 
+print ('Prediction :',pred[0])
+
+
+print ('Accuraccy: ',accuratte)
