@@ -1,0 +1,9 @@
+age,income,city,plan,bought
+22,25000,Alger,basic,0
+25,30000,Oran,basic,0
+30,40000,Alger,premium,1
+35,50000,Blida,premium,1
+40,60000,Oran,premium,1
+28,32000,Blida,basic,0
+45,70000,Alger,premium,1
+23,27000,Oran,basic,0
