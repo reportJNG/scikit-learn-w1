@@ -1,0 +1,11 @@
+age,income,city,plan,visits,bought
+22,25000,Alger,basic,1,0
+25,30000,Oran,basic,2,0
+30,40000,Alger,premium,4,1
+35,50000,Blida,premium,5,1
+40,60000,Oran,premium,6,1
+28,,Blida,basic,3,0
+45,70000,Alger,premium,7,1
+23,27000,Oran,basic,,0
+33,45000,Blida,premium,4,1
+26,32000,Alger,basic,2,0
