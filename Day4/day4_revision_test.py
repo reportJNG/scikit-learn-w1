@@ -1,0 +1,109 @@
+'''Day 4 — Quick Revision Test
+
+Create CSV:
+
+day4_revision.csv
+
+Put this:
+
+age,income,visits,city,plan,total_spent,bought
+18,20000,1,Alger,basic,50,0
+22,25000,2,Oran,basic,80,0
+25,30000,3,Blida,basic,120,0
+30,40000,4,Alger,premium,200,1
+35,50000,5,Blida,premium,350,1
+40,60000,6,Oran,premium,500,1
+45,70000,7,Alger,premium,700,1
+50,80000,8,Oran,premium,900,1
+28,,3,Blida,basic,150,0
+33,45000,,Alger,premium,300,1
+Your task
+
+Create:
+
+day4_revision_test.py
+Requirements
+Part A — Cleaning + Encoding
+1. Read CSV
+2. Print missing values before cleaning
+3. Fill missing numeric values using mean
+4. Print missing values after cleaning
+5. Convert city and plan using pd.get_dummies()
+6. Print encoded columns
+Part B — Regression
+
+Predict:
+
+total_spent
+
+Features:
+
+all columns except total_spent and bought
+
+Use:
+
+LinearRegression
+
+Evaluate with:
+
+mean_absolute_error
+
+Predict this custom row manually after encoding:
+
+age = 32
+income = 47000
+visits = 4
+city = Alger
+plan = premium
+
+For this revision test, you can manually encode the custom row.
+
+Part C — Classification
+
+Predict:
+
+bought
+
+Features:
+
+all columns except total_spent and bought
+
+Use:
+
+LogisticRegression
+
+Evaluate with:
+
+accuracy_score
+confusion_matrix
+classification_report
+
+Predict the same custom customer.'''
+
+from sklearn.model_selection import train_test_split
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+
+data=pd.read_csv('./CSV/day4_revision.csv')
+#print(data.isnull().sum())
+
+#first we can't clean data with knowing the columns number so
+
+row = data.select_dtypes(include=['number']).columns
+#print(row)
+#now we can start cleaning the actuall data
+
+data[row] = data[row].fillna(data[row].mean())
+#print(data)
+data = pd.get_dummies(data,['city','plan'],dtype=int)
+#print(data)
+#now after cleaning full data we can put then into input and target to train our model
+
+X=data.drop('total_spent','bought')
+y=data['total_spent']
+
+#start to train the first model
+X_train,X_test,y_train,y_test = train_test_split(
+    X,y,test_size=0.3,random_state=42
+)
+model1=LinearRegression()
