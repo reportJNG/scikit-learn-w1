@@ -82,6 +82,7 @@ Predict the same custom customer.'''
 
 from sklearn.model_selection import train_test_split
 import pandas as pd
+from sklearn.metrics import accuracy_score,mean_absolute_error
 from sklearn.linear_model import LinearRegression
 
 data=pd.read_csv('./CSV/day4_revision.csv')
@@ -99,7 +100,7 @@ data = pd.get_dummies(data,['city','plan'],dtype=int)
 #print(data)
 #now after cleaning full data we can put then into input and target to train our model
 
-X=data.drop('total_spent','bought')
+X=data.drop(['total_spent','bought'],axis=1)
 y=data['total_spent']
 
 #start to train the first model
@@ -107,3 +108,17 @@ X_train,X_test,y_train,y_test = train_test_split(
     X,y,test_size=0.3,random_state=42
 )
 model1=LinearRegression()
+model1.fit(X_train,y_train)
+custom = pd.DataFrame([{
+    'age': 32,
+    'income': 47000,
+    'visits': 4,
+    'city': 'Alger',
+    'plan': 'premium'
+}])
+#adding custum data that our model isnt trained at will be needed to fixed too
+custom = pd.get_dummies(custom, ['city', 'plan'], dtype=int)
+custom = custom.reindex(columns=X.columns, fill_value=0)
+
+prediction = model1.predict(custom)
+print(prediction[0])
