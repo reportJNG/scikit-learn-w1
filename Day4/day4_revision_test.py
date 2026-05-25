@@ -121,4 +121,4 @@ custom = pd.get_dummies(custom, ['city', 'plan'], dtype=int)
 custom = custom.reindex(columns=X.columns, fill_value=0)
 
 prediction = model1.predict(custom)
-print(prediction[0])
+#print(prediction[0])
