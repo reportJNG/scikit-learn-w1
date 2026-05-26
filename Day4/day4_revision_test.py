@@ -82,8 +82,8 @@ Predict the same custom customer.'''
 
 from sklearn.model_selection import train_test_split
 import pandas as pd
-from sklearn.metrics import accuracy_score,mean_absolute_error
-from sklearn.linear_model import LinearRegression
+from sklearn.metrics import accuracy_score,mean_absolute_error,confusion_matrix,classification_report
+from sklearn.linear_model import LinearRegression, LogisticRegression
 
 data=pd.read_csv('./CSV/day4_revision.csv')
 #print(data.isnull().sum())
@@ -122,3 +122,21 @@ custom = custom.reindex(columns=X.columns, fill_value=0)
 
 prediction = model1.predict(custom)
 #print(prediction[0])
+y_pred = model1.predict(X_test)
+mm=mean_absolute_error(y_test,y_pred)
+#print(mm)
+#-------------------------------------------------------------------
+X1=data.drop(['bought','total_spent'],axis=1)
+y1=data['bought']
+
+X1_test,X1_train,y1_test,y1_train = train_test_split(
+    X1,y1,test_size=0.3,random_state=42
+)
+
+model2=LogisticRegression(max_iter=200)
+model2.fit(X1_train,y1_train)
+y_pred2=model2.predict(X1_test)
+#print(predict2[0])
+print(classification_report(y1_test,y_pred2))
+print(accuracy_score(y1_test,y_pred2))
+print(confusion_matrix(y1_test,y_pred2))
